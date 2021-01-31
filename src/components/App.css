@@ -1,0 +1,12 @@
+.App {
+  position: relative;
+}
+
+.App__Background {
+  width: 100vw;
+  height: 35vh;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-image: url('../images/pattern-bg.png');
+}
