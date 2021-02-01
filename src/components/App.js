@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <div className="App__Background" />
       <IP setCoords={setCoords} />
-      <Map />
+      {coords && <Map coords={coords} />}
     </div>
   );
 }
