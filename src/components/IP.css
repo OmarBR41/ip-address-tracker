@@ -1,0 +1,90 @@
+.IP {
+  position: absolute;
+  width: 85%;
+  top: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.IP__Title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.IP__Input-Container {
+  display: flex;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.IP__Input-Wrapper {
+  flex: 1;
+  display: flex;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.IP__Input {
+  width: 80%;
+  font-size: 20px;
+  border: none;
+}
+
+.IP__Input:focus {
+  outline: none;
+}
+
+.IP__Input::placeholder {
+  font-size: 0.9em;
+}
+
+.IP__Button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  background-color: black;
+}
+
+.IP-Info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border-radius: 16px;
+  padding: 20px;
+  background-color: white;
+}
+
+.IP-Info__Field {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.IP-Info__Field:last-child {
+  margin-bottom: 0;
+}
+
+.IP-Field__Label {
+  margin-bottom: 8px;
+  color: var(--gray);
+  font-size: 0.6em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.IP-Field__Value {
+  font-size: 1.1em;
+  font-weight: 500;
+}
