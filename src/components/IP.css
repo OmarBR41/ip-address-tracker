@@ -3,12 +3,13 @@
   width: 85%;
   top: 36px;
   left: 50%;
+  font-size: 1rem;
   transform: translateX(-50%);
   z-index: 1000;
 }
 
 .IP__Title {
-  font-size: 1.4rem;
+  font-size: 1.2em;
   font-weight: 500;
   color: white;
   text-align: center;
@@ -32,7 +33,7 @@
 
 .IP__Input {
   width: 80%;
-  font-size: 20px;
+  font-size: 0.85em;
   border: none;
 }
 
@@ -48,8 +49,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 2.2em;
+  height: 2.2em;
   font-size: 20px;
   font-weight: 700;
   color: white;
@@ -87,4 +88,10 @@
 .IP-Field__Value {
   font-size: 1.1em;
   font-weight: 500;
+}
+
+@media only screen and (min-width: 375px) {
+  .IP {
+    font-size: 1.1rem;
+  }
 }
