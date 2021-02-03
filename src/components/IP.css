@@ -18,9 +18,10 @@
 
 .IP__Input-Container {
   display: flex;
-  border-radius: 16px;
+  margin: 0 auto 24px;
+  max-width: 460px;
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 24px;
 }
 
 .IP__Input-Wrapper {
@@ -63,8 +64,10 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin: 0 auto;
+  max-width: 400px;
   max-height: 44px;
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 20px;
   background-color: white;
   transition: max-height 0.75s ease 0.25s;
@@ -139,5 +142,42 @@
 @media only screen and (min-width: 375px) {
   .IP {
     font-size: 1.1rem;
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  .IP {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .IP-Info__Toggle {
+    display: none;
+  }
+
+  .IP-Info {
+    flex-direction: row;
+    align-items: stretch;
+    padding: 28px 24px;
+    max-width: 1000px;
+    max-height: 400px;
+  }
+
+  .IP-Info__Field {
+    width: 25%;
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  .IP-Info__Field:not(:first-child) {
+    border-left: 1px solid #ddd;
+    padding-left: 1rem;
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .IP {
+    font-size: 1.3rem;
   }
 }
