@@ -21,4 +21,6 @@ Users are able to:
 
 ## This is a Frontend Mentor Challenge
 
+I don't own the design, information or assets used here. This is a coding challenge.
+
 [More details on the challenge](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0)
