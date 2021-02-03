@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import L from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
@@ -28,7 +28,9 @@ export default function Map({ coords }) {
   const [map, setMap] = useState(null);
   const [marker, setMarker] = useState(null);
 
-  const updateMarker = (coords) => {
+  const updateMarker = useRef(() => {});
+
+  updateMarker.current = (coords) => {
     if (marker !== null) {
       map.removeLayer(marker);
     }
@@ -36,12 +38,11 @@ export default function Map({ coords }) {
     setMarker(newMarker);
   };
 
-  // Update Map view
   useEffect(() => {
     if (map === null || coords === null) return;
 
     map.setView(applyOffset(coords), ZOOM);
-    updateMarker(coords);
+    updateMarker.current(coords);
   }, [map, coords]);
 
   const displayMap = useMemo(

@@ -11,24 +11,34 @@ const IP_DATA = {
 };
 const API_KEY = process.env.REACT_APP_IP_API_KEY;
 
-const Input = ({ inputRef, clickHandler }) => {
-  return (
-    <div className="IP__Input-Container">
-      <div className="IP__Input-Wrapper">
-        <input
-          className="IP__Input"
-          name="ip"
-          type="text"
-          placeholder="Enter an IP Address"
-          ref={inputRef}
-        />
-      </div>
-      <div className="IP__Button" onClick={() => clickHandler()}>
-        <IconArrow />
-      </div>
-    </div>
+function isValidIPV4Addr(ip) {
+  return /^(?=\d+\.\d+\.\d+\.\d+$)(?:(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]|[0-9])\.?){4}$/.test(
+    ip
   );
-};
+}
+
+function isValidDomain(domain) {
+  return /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(
+    domain
+  );
+}
+
+const Input = ({ inputRef, clickHandler }) => (
+  <div className="IP__Input-Container">
+    <div className="IP__Input-Wrapper">
+      <input
+        ref={inputRef}
+        name="ip"
+        className="IP__Input"
+        placeholder="Search by IP or domain"
+        type="text"
+      />
+    </div>
+    <div className="IP__Button" onClick={() => clickHandler()}>
+      <IconArrow />
+    </div>
+  </div>
+);
 
 const InfoDetails = ({ data }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -69,13 +79,21 @@ export default function IP({ setCoords }) {
   const [IPData, setIPData] = useState(IP_DATA);
   const inputRef = useRef(null);
 
-  const fetchIPInfo = async (ip = null) => {
+  const fetchIPInfo = useRef(() => {});
+
+  fetchIPInfo.current = async (ip = null, domain = null) => {
     const res = await fetch(
       `https://geo.ipify.org/api/v1?apiKey=${API_KEY}${
         ip !== null ? `&ipAddress=${ip}` : ""
-      }`
+      }${domain !== null ? `&domain=${domain}` : ""}`
     );
     const data = await res.json();
+
+    // TODO: Improve error handling
+    if (data.code === 400) {
+      console.log(data.messages);
+      return;
+    }
 
     const ip_data = {
       ip: data.ip,
@@ -90,20 +108,22 @@ export default function IP({ setCoords }) {
     setCoords(coords);
   };
 
-  const searchByIP = async () => {
-    const ip = inputRef.current.value;
+  const search = async () => {
+    const input = inputRef.current.value;
 
-    fetchIPInfo(ip);
+    if (isValidIPV4Addr(input)) fetchIPInfo.current(input, null);
+
+    if (isValidDomain(input)) fetchIPInfo.current(null, input);
   };
 
   useEffect(() => {
-    fetchIPInfo();
+    fetchIPInfo.current();
   }, []);
 
   return (
     <div className="IP">
       <h1 className="IP__Title">IP Address Tracker</h1>
-      <Input inputRef={inputRef} clickHandler={searchByIP} />
+      <Input inputRef={inputRef} clickHandler={search} />
       <InfoDetails data={IPData} />
     </div>
   );
