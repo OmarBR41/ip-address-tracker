@@ -13,3 +13,5 @@ Users are able to:
 
 - IP information extracted from [IP Geolocation API by IPify](https://geo.ipify.org/).
 - Map rendered using [LeafletJS](https://leafletjs.com/).
+
+[More details on the challenge](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0)
