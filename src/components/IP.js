@@ -31,10 +31,11 @@ const Input = ({ inputRef, clickHandler }) => {
 };
 
 const InfoDetails = ({ data }) => {
+  const [isOpen, setIsOpen] = useState(true);
   const { ip, location, timezone, isp } = data;
 
   return (
-    <div className="IP-Info">
+    <div className={`IP-Info ${isOpen ? "IP-Info--Open" : ""}`}>
       <div className="IP-Info__Field">
         <p className="IP-Field__Label">IP Address</p>
         <p className="IP-Field__Value">{ip}</p>
@@ -50,6 +51,15 @@ const InfoDetails = ({ data }) => {
       <div className="IP-Info__Field">
         <p className="IP-Field__Label">ISP</p>
         <p className="IP-Field__Value">{isp}</p>
+      </div>
+      <div
+        className="IP-Info__Toggle"
+        onClick={() => setIsOpen((isOpen) => !isOpen)}
+      >
+        <IconArrow />
+        <span>
+          <IconArrow />
+        </span>
       </div>
     </div>
   );
