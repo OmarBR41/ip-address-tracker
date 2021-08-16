@@ -48,6 +48,13 @@
   font-size: 0.9em;
 }
 
+.IP__Input:-webkit-autofill,
+.IP__Input:-webkit-autofill:hover,
+.IP__Input:-webkit-autofill:focus,
+.IP__Input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
 .IP__Button {
   display: flex;
   align-items: center;
