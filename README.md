@@ -18,6 +18,8 @@ Users are able to:
 
 - See their own IP Address on the map on the initial page load
 - Search for any IP addresses or domains and see the key information and location
+- 
+The app is currently [live here](https://ip-address-tracker-obr.netlify.app/)
 
 ## Note
 
