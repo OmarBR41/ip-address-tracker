@@ -70,12 +70,8 @@ export default function IP({ setCoords }) {
 
   const fetchIPInfo = useRef(() => {});
 
-  fetchIPInfo.current = async (ip = null, domain = null) => {
-    const res = await fetch(
-      `https://geo.ipify.org/api/v1?apiKey=${API_KEY}${
-        ip !== null ? `&ipAddress=${ip}` : ""
-      }${domain !== null ? `&domain=${domain}` : ""}`
-    );
+  fetchIPInfo.current = async (queryType, value) => {
+    const res = await fetch(`https://geo.ipify.org/api/v1?apiKey=${API_KEY}&${queryType}=${value}`);
     const data = await res.json();
 
     // TODO: Improve error handling
@@ -97,12 +93,14 @@ export default function IP({ setCoords }) {
     setCoords(coords);
   };
 
-  const search = async () => {
+  const search = () => {
     const input = inputRef.current.value;
+    let type = 'ipAddress';
 
-    if (isValidIPV4Addr(input)) fetchIPInfo.current(input, null);
-
-    if (isValidDomain(input)) fetchIPInfo.current(null, input);
+    if (!isValidIPV4Addr(input) && isValidDomain(input)) {
+      type = 'domain'
+    }
+    fetchIPInfo.current(type, input);
   };
 
   useEffect(() => {
