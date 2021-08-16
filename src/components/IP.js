@@ -11,6 +11,7 @@ const IP_DATA = {
   isp: "...",
 };
 const API_KEY = process.env.REACT_APP_IP_API_KEY;
+const DEFAULT_IP = "8.8.8.8";
 
 const Input = ({ inputRef, clickHandler }) => (
   <div className="IP__Input-Container">
@@ -21,6 +22,7 @@ const Input = ({ inputRef, clickHandler }) => (
         className="IP__Input"
         placeholder="Search by IP or domain"
         type="text"
+        defaultValue={DEFAULT_IP}
       />
     </div>
     <div className="IP__Button" onClick={() => clickHandler()}>
@@ -104,7 +106,7 @@ export default function IP({ setCoords }) {
   };
 
   useEffect(() => {
-    fetchIPInfo.current();
+    fetchIPInfo.current('ipAddress', DEFAULT_IP);
   }, []);
 
   return (
