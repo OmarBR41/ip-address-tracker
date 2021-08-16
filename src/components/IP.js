@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import "./IP.css";
 import { ReactComponent as IconArrow } from "../images/icon-arrow.svg";
+import { isValidIPV4Addr, isValidDomain } from '../utils/validations';
 
 const IP_DATA = {
   ip: "...",
@@ -10,18 +11,6 @@ const IP_DATA = {
   isp: "...",
 };
 const API_KEY = process.env.REACT_APP_IP_API_KEY;
-
-function isValidIPV4Addr(ip) {
-  return /^(?=\d+\.\d+\.\d+\.\d+$)(?:(?:25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]|[0-9])\.?){4}$/.test(
-    ip
-  );
-}
-
-function isValidDomain(domain) {
-  return /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(
-    domain
-  );
-}
 
 const Input = ({ inputRef, clickHandler }) => (
   <div className="IP__Input-Container">
