@@ -73,26 +73,25 @@ export default function IP({ setCoords }) {
   const fetchIPInfo = useRef(() => {});
 
   fetchIPInfo.current = async (queryType, value) => {
-    const res = await fetch(`https://geo.ipify.org/api/v1?apiKey=${API_KEY}&${queryType}=${value}`);
-    const data = await res.json();
+    try {
+      const res = await fetch(`https://geo.ipify.org/api/v1?apiKey=${API_KEY}&${queryType}=${value}`);
+      const data = await res.json();
 
-    // TODO: Improve error handling
-    if (data.code === 400) {
-      console.log(data.messages);
-      return;
+      const ip_data = {
+        ip: data.ip,
+        location: `${data.location.city}, ${data.location.country}`,
+        timezone: `UTC ${data.location.timezone}`,
+        isp: data.isp,
+      };
+
+      const coords = [data.location.lat, data.location.lng];
+
+      setIPData(ip_data);
+      setCoords(coords);
+    } catch (err) {
+      alert("The IPify API might be getting blocked by an AdBlocker. Please pause any AdBlocker you have, use an incognito window or another browser to keep using this site.")
+      console.error(err)
     }
-
-    const ip_data = {
-      ip: data.ip,
-      location: `${data.location.city}, ${data.location.country}`,
-      timezone: `UTC ${data.location.timezone}`,
-      isp: data.isp,
-    };
-
-    const coords = [data.location.lat, data.location.lng];
-
-    setIPData(ip_data);
-    setCoords(coords);
   };
 
   const search = () => {
