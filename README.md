@@ -19,6 +19,10 @@ Users are able to:
 - See their own IP Address on the map on the initial page load
 - Search for any IP addresses or domains and see the key information and location
 
+## Note
+
+Keep in mind that the IPify API might be blocked by an AdBlocker, so if you experience any issues, try disabling your AdBlockers, test the site in another browser or in an incognito window.
+
 ## This is a Frontend Mentor Challenge
 
 I don't own the design, information or assets used here. This is a coding challenge.
